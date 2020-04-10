@@ -1,0 +1,11 @@
+# always sudo privileges required with docker
+sudo: required
+
+servies:
+  # tell travis to install docker cli
+  - docker
+before_install:
+  - docker build -t florianginer/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true florianginer/docker-react npm run test
